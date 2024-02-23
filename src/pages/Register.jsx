@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import classes from "./register/register.module.css";
+//import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from "../axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../component/Layout/Layout";
@@ -48,41 +50,88 @@ function Register() {
 
   return (
     <Layout>
-      <section>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <span>
-              username:---
-              <input ref={usernameDom} type="text" name="userName" />
-            </span>
-          </div>
-          <br />
-          <div>
-            <span>First name:...</span>
-            <input ref={firstnameDom} type="text" name="firstName" />
-          </div>
-          <br />
-          <div>
-            <span>Last name:---</span>
-            <input ref={lastnameDom} type="text" name="lastName" />
-          </div>
-          <br />
-          <div>
-            <span>email:---</span>
-            <input ref={emailDom} type="email" name="email" />
-          </div>
-          <br />
+      <section className={classes.login_conteiner}>
+        <div className={classes.login_wrapper}>
+          <div className={classes.login_form}>
+            <form onSubmit={handleSubmit} className={classes.login_form_input}>
+              <h1 className={classes.login_title}>Join the network</h1>
+              <small>
+                Already have an account?<Link to="/login"> Sign in</Link>
+              </small>
+              <div className={classes.inputs}>
+                <div>
+                  <input
+                    className={classes.user}
+                    ref={usernameDom}
+                    type="text"
+                    placeholder="userName"
+                  />
+                </div>
+                <br />
+                <div className={classes.first_last}>
+                  <div>
+                    <input
+                      className={classes.first}
+                      ref={firstnameDom}
+                      type="text"
+                      placeholder="firs tName"
+                    />
+                  </div>
 
-          <div>
-            <span>
-              password:---
-              <input ref={passwordDom} type="password" name="passWord" />
-            </span>
-            <br />
+                  <div>
+                    <input
+                      className={classes.last}
+                      ref={lastnameDom}
+                      type="text"
+                      placeholder="last Name"
+                    />
+                  </div>
+                </div>
+                <br />
+                <div>
+                  <input
+                    className={classes.email}
+                    ref={emailDom}
+                    type="email"
+                    placeholder="email"
+                  />
+                </div>
+                <br />
+                <div>
+                  <input
+                    className={classes.password}
+                    ref={passwordDom}
+                    type="password"
+                    placeholder="passWord"
+                  />
+                </div>
+                <br />
+                <small>
+                  I agree to the <Link> privacy policy</Link>
+                  and
+                  <Link>terms of service.</Link>
+                </small>
+                <button type="submit">Agree and Join</button>
+              </div>
+            </form>
           </div>
-          <button type="submit">Register</button>
-        </form>
-        <Link to="/login">Login</Link>
+        </div>
+
+        <div className={classes.Evangadi_description}>
+          <small className={classes.title_link}>About</small>
+          <h2 className={classes.title}>Evangadi Networks</h2>
+          <p className={classes}>
+            No matter what stage of life you are in, whether you’re just
+            starting elementary school or being promoted to CEO of a Fortune 500
+            company, you have much to offer to those who are trying to follow in
+            your footsteps.
+          </p>
+          <p className="font-p mg-bt-30">
+            Wheather you are willing to share your knowledge or you are just
+            looking to meet mentors of your own, please start by joining the
+            network here
+          </p>
+        </div>
       </section>
     </Layout>
   );

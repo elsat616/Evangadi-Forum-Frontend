@@ -1,0 +1,264 @@
+/* *{
+  margin: 0;
+  padding: 0;
+  
+}
+ .conteiner{
+  display: flex;
+  flex-direction: row;
+  margin:auto ;
+  margin-top: 50px;
+  background-color: #fff;
+  padding-bottom: 30px;
+} 
+
+.conteiner form{
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+box-sizing:content-box;
+margin: 50px 50px;
+padding-top: 15px;
+padding-bottom: 15px;
+}
+
+
+.another_container{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-sizing:content-box;
+  margin: 50px 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.another_container{
+  display: flex;
+  flex-direction: column;
+}
+
+.another_container p{
+  margin-bottom: 20px;
+  font-size: larger;
+}
+
+.text{
+  margin-bottom: 20px; ;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.inputs{
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.conteiner div{
+  padding-left: 50px;
+  display:inline-flex;
+  align-items: center;
+  margin: 0 30px ;
+}
+
+.conteiner form input{
+  width: 480px;
+  color: #333333;
+    padding: 12px;
+    outline: none;
+    border: 0 none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+} */
+
+/* 
+button {
+  background-color: #3a48e5;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color:orange;
+} 
+
+@media (max-width: 768px){
+  section.conteiner div {
+    flex-direction: column;
+     align-items: center;
+    display: inline !important;
+  }
+  
+
+  h1.text {
+    text-align: center;
+  }
+
+} */  
+
+
+ .login_conteiner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F8F8F8;
+  background-image: url('../../assets/BG.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+   padding-top: 40px;
+   
+} 
+
+ .login_wrapper {
+  box-sizing: border-box;
+  width: 35%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+} 
+
+.login__form{
+  box-sizing: border-box;
+  width: 35%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.login_title{
+  color: #4B456F;
+  margin: 30px 0px 10px;
+  text-align: center;
+}
+
+.login_form a{
+  color: chocolate;
+}
+.login_form_input{
+  font-size: 14px;
+  padding: 10px;  
+}
+
+.login_form_input input{
+  font-size: 14px;
+  padding: 10px;
+}
+
+.login_form_input input:focus{
+  outline: none;
+  border-bottom: 2px solid #FE8402;
+}
+
+.email__input, .pass__input{
+  width: 80%;
+  padding: 10px 5px;
+  border: 1px solid #999999;
+  border-radius: 3px;
+  margin-bottom: -10px;
+}
+
+.login_form_input button{
+  width: 100%;
+  padding: 10px 5px;
+  border: none;
+  border-radius: 3px;
+  background-color: #FE8402;
+  color: white;
+  margin: 20px 0px 15px;
+  font-size: 14px;
+}
+
+.login_form_input button:hover{
+  cursor: pointer;
+  background-color:#516CF0;
+  cursor: pointer;
+}
+
+.login__form a {
+  color: #FE8402;
+   margin-bottom: 70px; 
+   text-decoration: none;
+}
+
+.login__form a:hover{
+  color: #DA7000;
+}
+
+.user{
+  border: 1px solid #999;
+  border-radius: 3px;
+  margin-bottom: -10px;
+  padding: 10px 5px;
+  width: 95%;
+}
+
+.first_last{
+  display: flex;
+  gap: 10px;
+  
+}
+
+.first{
+  border: 1px solid #999;
+  border-radius: 3px;
+  margin-bottom: -10px;
+  padding: 10px 5px;
+  width: 90%;
+  
+}
+
+.last{
+  border: 1px solid #999;
+  border-radius: 3px;
+  margin-bottom: -10px;
+  padding: 10px 5px;
+  width: 90%;
+}
+
+.email{
+  border: 1px solid #999;
+  border-radius: 3px;
+  margin-bottom: -10px;
+  padding: 10px 5px;
+  width: 95%;
+}
+.password{
+  border: 1px solid #999;
+  border-radius: 3px;
+  margin-bottom: -10px;
+  padding: 10px 5px;
+  width: 95%;
+}
+.Evangadi_description{
+  color: #656565;
+  margin-left: 40px;
+  width: 35%;
+} 
+.Evangadi_description{
+  display: inline;
+} 
+
+.login_title small{
+  text-align: center;
+  margin: -5px 0 20px ;
+}
+.login_wrapper small a{
+  color:#DA7000;
+  text-decoration: none;
+}
