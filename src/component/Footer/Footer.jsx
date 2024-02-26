@@ -1,6 +1,9 @@
 import React from "react";
 import classes from "./footer.module.css";
-import logo from '../images/logo.png';
+import logo from "../images/logo.png";
+import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 
 function Footer() {
   return (
@@ -10,7 +13,14 @@ function Footer() {
           <div className={classes.footer_inner_container}>
             <div className={classes.footer_data}>
               <div>
-              <img src={logo} />
+              <div className={classes.footer_icon}>
+                <img src={logo} />
+              </div>  
+              <div className="footer_icons">
+                <FacebookOutlinedIcon />
+                <InstagramIcon />
+                <YouTubeIcon />
+              </div>            
               </div>
               <div>
                 <h3>Useful Link</h3>

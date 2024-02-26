@@ -1,0 +1,32 @@
+/* question css */
+.question {
+    padding-top: 90px;
+    min-height: 70vh;
+  }
+  .question_header {
+    margin-top: 30px;
+    width: 60%;
+    margin: 0px auto;
+    /* margin-bottom: 50px; */
+    display: flex;
+    margin: 0 auto;
+  }
+  
+  
+  .question_header h2 {
+    border-bottom: 1px solid #dddddd;
+    margin: 0 auto;
+  }
+  .question_header button{
+    padding: 5px 10px;
+    justify-content: space-between;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+  
+  .question_header button:hover{
+   background-color: #a19e9e;
+  }
+  

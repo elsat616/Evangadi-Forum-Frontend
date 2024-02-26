@@ -1,41 +1,54 @@
-import { useEffect, useState, createContext } from "react";
-import Home from "./pages/Home";
-import LogIn from "./pages/login";
-import Register from "./pages/Register";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { UserContext } from "./component/Dataprovide/DataProvider";
+import Home from "./pages/Home/Home";
+import Login from "./pages/login/login";
 import axios from "./axiosConfig";
+import Question from "./pages/Question/Question"
+import Register from "./pages/Register/Register"
 
-export const AppState = createContext();
 function App() {
-  const [user, setUser] = useState({});
-  const token = localStorage.getItem("token");
-  const navigate = useNavigate();
-  async function checkUser() {
-    try {
-      const { data } = await axios.get("/users/check", {
-        headers: {
-          Authorization: "Bearer " + token,
+  const [userData, setUserData] = useContext(UserContext);
+ 
+
+  const checkUser = async () => {
+    let token = localStorage.getItem("token");
+    if (token === null || token === "") {
+      localStorage.setItem("token", "");
+      token = "";
+      
+    } else {
+      const userRes = await axios.get("/users/check", {
+        headers: { Authorization: "Bearer " + token,},
+      });
+
+      setUserData({
+        token,
+        user: {
+          id: userRes.data.userid,
+          display_name: userRes.data.username,
+        },
+        config: {
+          headers: { Authorization: "Bearer " + token,},
         },
       });
-      setUser(data);
-    } catch (error) {
-      console.log(error.response);
-      navigate("/login");
     }
-  }
+  };
 
   useEffect(() => {
-    checkUser();
+    checkUser() 
   }, []);
-
   return (
-    <AppState.Provider value={{ user, setUser }}>
+    <Router>
+       {/* <AppState.Provider value={{ userData, setUserData }}>     */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LogIn />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/question" element={<Question />} />
       </Routes>
-    </AppState.Provider>
+      {/* </AppState.Provider> */}
+    </Router>
   );
 }
 
