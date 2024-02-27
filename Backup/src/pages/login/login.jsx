@@ -1,15 +1,14 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import axios from "../../axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../../component/Layout/Layout";
 import classes from "./login.module.css";
+import { bg } from "../../assets/bg-svg-f.svg";
 
 function login() {
   const navigate = useNavigate();
   const emailDom = useRef();
   const passwordDom = useRef();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -36,12 +35,11 @@ function login() {
       console.log(error.response.data);
     }
   }
-
   return (
     <Layout>
       <div
         style={{
-          backgroundImage: "url('../../assets/bg-svg-f.svg')",
+          backgroundImage: `url(${bg})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           paddingTop: "100px",
@@ -53,7 +51,7 @@ function login() {
           <div className={classes.login_form}>
             <form onSubmit={handleSubmit} className={classes.login_form_input}>
               <h3 className={classes.login_title}>Login to your account</h3>
-              <small>Don't have an account? </small>
+              <small>Don’t have an account? </small>
               <Link to="/register">
                 <small>Create a new account</small>
               </Link>
@@ -64,8 +62,6 @@ function login() {
                   type="email"
                   name="email"
                   placeholder="Enter Your Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <br />
@@ -77,8 +73,6 @@ function login() {
                   type="password"
                   name="passWord"
                   placeholder="Enter Your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <br />
               </div>
@@ -100,7 +94,7 @@ function login() {
               follow in your footsteps.
             </p>
             <p className="font-p mg-bt-30">
-              Weather you are willing to share your knowledge or you are just
+              Wheather you are willing to share your knowledge or you are just
               looking to meet mentors of your own, please start by joining the
               network here.
             </p>

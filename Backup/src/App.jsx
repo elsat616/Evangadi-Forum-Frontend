@@ -4,16 +4,12 @@ import { UserContext } from "./component/Dataprovide/DataProvider";
 import Home from "./pages/Home/Home";
 import Login from "./pages/login/login";
 import axios from "./axiosConfig";
-import Question from "./pages/Question/Question";
-import Register from "./pages/Register/Register";
-import Answer from "./pages/Answer/Answer";
-import QuestionDetails from "./pages/Questionlist/QuestionDetails";
 
 function App() {
   const [userData, setUserData] = useContext(UserContext);
+  const token = localStorage.getItem("token");
 
-  const checkUser = async () => {
-    let token = localStorage.getItem("token");
+  const checkUsers = async () => {
     if (token === null || token === "") {
       localStorage.setItem("token", "");
       token = "";
@@ -36,20 +32,14 @@ function App() {
   };
 
   useEffect(() => {
-    checkUser();
+    checkUsers();
   }, []);
   return (
     <Router>
-      {/* <AppState.Provider value={{ userData, setUserData }}>     */}
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
-        <Route path="/question" element={<Question />} />
-        <Route path="/question/:id" element={<Answer />} />
-        <Route path="/questions/:questionId" element={<QuestionDetails />} />
       </Routes>
-      {/* </AppState.Provider> */}
     </Router>
   );
 }

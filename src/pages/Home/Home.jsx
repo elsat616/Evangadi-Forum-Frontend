@@ -1,14 +1,13 @@
 import React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 import Layout from "../../component/Layout/Layout";
 import classes from "./Home.module.css";
 import { Link, useNavigate } from "react-router-dom";
-
-import QuestionList from "../Dashboard/QuestionList";
+import QuestionList from "../Questionlist/QuestionList";
 import { UserContext } from "../../component/Dataprovide/DataProvider";
 
-const Home = ({ logout }) => {
+function Home() {
   const [userData] = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -37,13 +36,12 @@ const Home = ({ logout }) => {
             <div className={classes.question_header}>
               <h2> Questions </h2>
             </div>
-
             <QuestionList />
           </>
         ) : null}
       </div>
     </Layout>
   );
-};
+}
 
 export default Home;
