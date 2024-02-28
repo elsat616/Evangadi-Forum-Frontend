@@ -1,7 +1,5 @@
-import React from "react";
-import { BsPersonCircle } from "react-icons/bs";
-import classes from "./questionlist.module.css";
 
+<<<<<<< HEAD
 function SingleQuestion({ question }) {
   return (
     <div className={classes.question}>
@@ -27,3 +25,5 @@ function SingleQuestion({ question }) {
 }
 
 export default SingleQuestion;
+=======
+>>>>>>> c5da5acc8bd5c6247411140e6778c8681ac0c888
