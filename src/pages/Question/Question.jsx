@@ -4,7 +4,7 @@ import axios from "../../axiosConfig";
 import {useNavigate } from "react-router-dom";
 import Layout from "../../component/Layout/Layout";
 import classes from "./question.module.css"
-// import Home from "../Home/Home";
+
 
 function Question(){
 	const navigate = useNavigate();

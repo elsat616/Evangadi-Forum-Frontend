@@ -21,7 +21,6 @@ function SingleQuestion({ question }) {
       </div>
       <div className={classes.answer_wrapper}>
         <h3>Answers</h3>
-        {/* Render answers here */}
       </div>
     </div>
   );

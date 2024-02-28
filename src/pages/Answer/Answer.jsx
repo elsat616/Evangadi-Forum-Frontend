@@ -1,67 +1,128 @@
-import React, { useState, useEffect } from "react";
-import axios from "../../axiosConfig";
-import Layout from "../../component/Layout/Layout";
+// import React, { useContext, useEffect, useRef, useState } from "react";
+// import { UserContext } from "../../component/Dataprovide/DataProvider";
+// import axios from "../../axiosConfig";
+// import { useNavigate, useParams } from "react-router-dom";
+// import Layout from "../../component/Layout/Layout";
+// import classes from "../../pages/Question/question.module.css";
 
-function Answer({ questionid }) {
-  const [question, setQuestion] = useState(null);
-  const [answer, setAnswer] = useState("");
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const [answers, setAnswers] = useState([]);
+// function Answer() {
+//   const { id } = useParams();
+//   console.log(id);
+//   const navigate = useNavigate();
+//   const [userData, setUserData] = useContext(UserContext);
+//   const [question, setQuestion] = useState({});
+//   const answerDom = useRef();
+
+//   useEffect(() => {
+//     if (!userData.user) navigate("/login");
+//   }, [userData.user, navigate]);
+
+//   const token = localStorage.getItem("token");
+
+//   async function handleSubmit(e) {
+//     e.preventDefault();
+//     const answerValue = answerDom.current.value;
+
+//     if (!answerValue) {
+//       alert("Please provide information");
+//       return;
+//     }
+//     try {
+//       await axios.post(
+//         `/answers/postAnswer/${id}`,
+//         {
+//           answer: answerValue,
+//           userid: userData?.user?.id,
+//           quesitonid: question?.question?.id,
+//         },
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//         }
+//       );
+//       alert("Thank you for your answer");
+//       navigate("/");
+//     } catch (error) {
+//       alert("something went wrong!");
+//       console.log(error);
+//     }
+//   }
+
+//   return (
+//     <Layout>
+//       <div className={classes.question_container}>
+//         <div className={classes.question_wrapper}>
+//           {question && (
+//             <div className={classes.question}>
+//               <h3>{question.title}</h3>
+//               <p>{question.description}</p>
+//             </div>
+//           )}
+//           <h4>Answer a question</h4>
+//           <div className={classes.question_headtitle2}>
+//             <form onSubmit={handleSubmit}>
+//               <textarea
+//                 rows={4}
+//                 className={classes.question_description}
+//                 ref={answerDom}
+//                 type="text"
+//                 placeholder="Question Description..."
+//               />
+//               <span>
+//                 <button
+//                   className={classes.question_button}
+//                   variant="primary"
+//                   type="submit"
+//                 >
+//                   Post Your Question
+//                 </button>
+//               </span>
+//             </form>
+//           </div>
+//         </div>
+//       </div>
+//     </Layout>
+//   );
+// }
+
+// export default Answer;
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { UserContext } from "../../component/Dataprovide/DataProvider";
+import axios from "../../axiosConfig";
+import { useNavigate, useParams } from "react-router-dom";
+import Layout from "../../component/Layout/Layout";
+import classes from "../../pages/Question/question.module.css";
+
+function Answer() {
+  const { id } = useParams();
+  console.log(id);
+  const navigate = useNavigate();
+  const [userData, setUserData] = useContext(UserContext);
+  const [question, setQuestion] = useState({});
+  const answerDom = useRef();
 
   useEffect(() => {
-    // Fetch the question and answers
-    fetchQuestion();
-    fetchAnswers();
-  }, [questionid]);
+    if (!userData.user) navigate("/login");
+  }, [userData.user, navigate]);
 
-  const fetchQuestion = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        `questions/singleQuestion/${questionid}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  const token = localStorage.getItem("token");
 
-      console.log("Question response:", response);
-      setQuestion(response.data);
-    } catch (error) {
-      console.log("Error fetching question:", error);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const answerValue = answerDom.current.value;
+
+    if (!answerValue) {
+      alert("Please provide information");
+      return;
     }
-  };
-
-  const fetchAnswers = async () => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(`answers/allAnswers/${questionid}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("Answers response:", response);
-      setAnswers(response.data);
-    } catch (error) {
-      console.log("Error fetching answers:", error);
-    }
-  };
-
-  const handleAnswerChange = (event) => {
-    setAnswer(event.target.value);
-  };
-
-  const handleSubmitAnswer = async (event) => {
-    event.preventDefault();
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        `answers/postAnswer/${questionid}`,
+      await axios.post(
+        `/answers/postAnswer/${id}`,
         {
-          questionid,
-          answer,
+          answer: answerValue,
+          userid: userData?.user?.id,
+          questionid: question?.question?.id, // Fixed typo here
         },
         {
           headers: {
@@ -69,51 +130,46 @@ function Answer({ questionid }) {
           },
         }
       );
-      setAnswer("");
-      setSuccess(true);
-      console.log(response.data); // Optional: Handle the response as desired
-      fetchAnswers(); // Fetch the updated answers after submitting a new answer
+      alert("Thank you for your answer");
+      navigate("/");
     } catch (error) {
-      setError("An error occurred. Please try again later.");
+      alert("something went wrong!");
       console.log(error);
     }
-  };
-
-  if (question === null) {
-    return (
-      <Layout>
-        <div>
-          <p>Loading question...</p>
-        </div>
-      </Layout>
-    );
   }
 
   return (
     <Layout>
-      <div>
-        <h2>Question:</h2>
-        <h3>{question.title}</h3>
-        <p>{question.description}</p>
-        <h2>Answer the Question:</h2>
-        <form onSubmit={handleSubmitAnswer}>
-          <textarea
-            value={answer}
-            onChange={handleAnswerChange}
-            placeholder="Write your answer here..."
-            required
-          ></textarea>
-          <button type="submit">Submit Answer</button>
-        </form>
-        {error && <p>{error}</p>}
-        {success && <p>Answer submitted successfully!</p>}
-        <h3>Answers:</h3>
-        {answers.map((answer) => (
-          <div key={answer.id}>
-            <p>{answer.answer}</p>
-            <p>By: {answer.username}</p>
+      <div className={classes.question_container}>
+        <div className={classes.question_wrapper}>
+          {question && (
+            <div className={classes.question}>
+              <h3>{question.title}</h3>
+              <p>{question.description}</p>
+            </div>
+          )}
+          <h4>Answer a question</h4>
+          <div className={classes.question_headtitle2}>
+            <form onSubmit={handleSubmit}>
+              <textarea
+                rows={4}
+                className={classes.question_description}
+                ref={answerDom}
+                type="text"
+                placeholder="Question Description..."
+              />
+              <span>
+                <button
+                  className={classes.question_button}
+                  variant="primary"
+                  type="submit"
+                >
+                  Post Your Answer
+                </button>
+              </span>
+            </form>
           </div>
-        ))}
+        </div>
       </div>
     </Layout>
   );
