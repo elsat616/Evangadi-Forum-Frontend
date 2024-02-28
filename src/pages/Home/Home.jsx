@@ -1,6 +1,5 @@
 import React from "react";
 import { useContext, useEffect } from "react";
-
 import Layout from "../../component/Layout/Layout";
 import classes from "./Home.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,7 +9,6 @@ import { UserContext } from "../../component/Dataprovide/DataProvider";
 function Home() {
   const [userData] = useContext(UserContext);
   const navigate = useNavigate();
-
   const isLoggedIn = !!userData.user;
   useEffect(() => {
     if (!isLoggedIn) navigate("/login");

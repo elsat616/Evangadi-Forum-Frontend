@@ -1,43 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "../../axiosConfig";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
+// import "font-awesome/css/font-awesome.min.css";
+// import "../Question/question.css";
+import { FaGreaterThan } from "react-icons/fa";
 
-function QuestionDetails() {
-  const { questionId } = useParams();
-  const [question, setQuestion] = useState(null);
+function QuestionDetail({ question }) {
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchQuestion();
-  }, []);
-
-  const fetchQuestion = async () => {
-    try {
-      const response = await axios.get(`/questions/${questionId}`);
-      if (response.status === 200) {
-        setQuestion(response.data);
-      } else {
-        console.error("Failed to fetch question");
-      }
-    } catch (error) {
-      console.error("Error fetching question:", error);
-    }
+  const handleClick = () => {
+    navigate(`/answer/${question.questionid}`);
   };
-
   return (
-    <div>
-      {question ? (
-        <div>
-          <h2>{question.title}</h2>
-          <p>{question.body}</p>
+    <div className="header_question">
+      <div className="question_user" style={{ textAlign: "center" }}>
+        <CgProfile style={{ width: "80%", height: "80%", margin: "auto" }} />
+        <div style={{ width: "80%", height: "20%", margin: "auto" }}>
+          {question ? question.username + "" : "New User"}{" "}
         </div>
-      ) : (
-        <div>
-        <h2>{question.title}</h2>
-        <p>{question.body}</p>
+      </div>
+      <div className="question_title" onClick={handleClick}>
+        <div className="question_content">
+          {question ? question.title : "New Title"}
         </div>
-      )}
+        <div className="question_arrow">
+          <FaGreaterThan />
+        </div>
+      </div>
     </div>
   );
 }
 
-export default QuestionDetails;
+export default QuestionDetail;

@@ -7,7 +7,6 @@ import axios from "./axiosConfig";
 import Question from "./pages/Question/Question";
 import Register from "./pages/Register/Register";
 import Answer from "./pages/Answer/Answer";
-import QuestionDetails from "./pages/Questionlist/QuestionDetails";
 
 function App() {
   const [userData, setUserData] = useContext(UserContext);
@@ -40,16 +39,13 @@ function App() {
   }, []);
   return (
     <Router>
-      {/* <AppState.Provider value={{ userData, setUserData }}>     */}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="/question" element={<Question />} />
         <Route path="/question/:id" element={<Answer />} />
-        <Route path="/questions/:questionId" element={<QuestionDetails />} />
       </Routes>
-      {/* </AppState.Provider> */}
     </Router>
   );
 }
