@@ -142,12 +142,12 @@ function Answer() {
     <Layout>
       <div className={classes.question_container}>
         <div className={classes.question_wrapper}>
-          {question && (
+          {/* {question && (
             <div className={classes.question}>
               <h3>{question.title}</h3>
               <p>{question.description}</p>
             </div>
-          )}
+          )} */}
           <h4>Answer a question</h4>
           <div className={classes.question_headtitle2}>
             <form onSubmit={handleSubmit}>
