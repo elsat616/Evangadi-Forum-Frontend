@@ -146,7 +146,7 @@ export default QuestionList;
 //                 </h5>
 //               </div>
 
-//               <div onClick={() => handleClick(question.id)}>
+//               <div onClick={() => handleClick(question.questionid)}>
 //                 <Link to={`/question/${question.id}`}>
 //                   <h3> {question.title}</h3>
 //                   <p> {question.description}</p>
