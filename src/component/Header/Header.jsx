@@ -7,15 +7,24 @@ import { UserContext } from "../Dataprovide/DataProvider";
 function Header() {
   const [userData, setUserData] = useContext(UserContext);
 
-  const logout = () => {
+  async function logout() {
     //set global state to undefined will logout the user
-    setUserData({
-      token: undefined,
-      user: undefined,
-    });
-    //resetting localStorage
-    localStorage.setItem("token", "");
-  };
+
+    try {
+      setUserData({
+        token: "",
+        user: "",
+      });
+      //resetting localStorage
+      localStorage.setItem("", "");
+      userData.token = "";
+      userData.user = "";
+      userData.config = "";
+      console.log(userData, "uuuuuuuuuu");
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <section>
@@ -30,14 +39,16 @@ function Header() {
             <p>Home</p>
             <p>How it Works</p>
             <div className={classes.connect_block}>
-            <button><a
-                className={classes.btn_blue}
-                data-panel=".panel-login"
-                href="/login"
-                onClick={logout}
-              >
-                {userData.user ? `Log Out` : `Sign In`}
-              </a></button>
+              <button>
+                <Link
+                  className={classes.btn_blue}
+                  data-panel=".panel-login"
+                  to="/login"
+                  onClick={logout}
+                >
+                  {userData?.user ? `Log Out` : `Sign In`}
+                </Link>
+              </button>
             </div>
           </div>
         </div>

@@ -2,11 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F8F8F8;
-  background-image: url('../../assets/BG.svg');
+  background-color: #f8f8f8;
+  background-image: url("../../assets/BG.svg");
   background-size: cover;
   background-repeat: no-repeat;
-   padding-top: 40px;
+  padding-top: 40px;
 }
 
 .login_wrapper {
@@ -20,10 +20,30 @@
   background-color: white;
   border-radius: 10px;
   padding-bottom: 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.login__form{
+.create{
+  text-align: center;
+  width: 100%;
+}
+
+.c
+.create:hover {
+  padding-left: 50px;
+  border-bottom: 3px rgb(0, 0, 0) solid;
+  transition: 10000ms;
+  width: 50%;
+  
+}
+
+
+.box {
+  box-shadow: 0px 0px 6px 0px rgb(56, 55, 55);
+padding: 20px;
+background-color: white;
+}
+
+.login__form {
   box-sizing: border-box;
   width: 35%;
   height: 500px;
@@ -36,30 +56,41 @@
   padding-bottom: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-.login_title{
-  color: #4B456F;
+.login_title {
+  color: #4b456f;
   margin: 30px 0px 10px;
 }
+.title_ev {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  background-image: linear-gradient(310deg, #000000, #ff4800);
+  padding: 10px 0;
+  font-weight: 700;
+  font-size: 45px;
+  z-index: 1;
+}
 
-.login_form a{
+.login_form a {
   color: chocolate;
 }
-.login_form_input{
-  font-size: 14px;
-  padding: 10px;  
-}
-
-.login_form_input input{
+.login_form_input {
   font-size: 14px;
   padding: 10px;
 }
 
-.login_form_input input:focus{
-  outline: none;
-  border-bottom: 2px solid #FE8402;
+.login_form_input input {
+  font-size: 14px;
+  padding: 10px;
 }
 
-.email__input, .pass__input{
+.login_form_input input:focus {
+  outline: none;
+  border-bottom: 2px solid #fe8402;
+}
+
+.email__input,
+.pass__input {
   width: 80%;
   padding: 10px 5px;
   border: 1px solid #999999;
@@ -67,47 +98,46 @@
   margin-bottom: -10px;
 }
 
-.login_form_input button{
+.login_form_input button {
   width: 100%;
   padding: 10px 5px;
   border: none;
   border-radius: 3px;
-  background-color: #FE8402;
+  background-color: #fe8402;
   color: white;
   margin: 20px 0px 15px;
   font-size: 14px;
 }
 
-.login_form_input button:hover{
+.login_form_input button:hover {
   cursor: pointer;
-  background-color:#516CF0;
+  background-color: #516cf0;
   cursor: pointer;
 }
 
 .login__form a {
-  color: #FE8402;
+  color: #fe8402;
   /* margin-bottom: 70px; */
-  text-decoration: none;
 }
 
-.login__form a:hover{
-  color: #DA7000;
+.login__form a:hover {
+  color: #da7000;
 }
-.email{
+.email {
   border: 1px solid #999;
   border-radius: 3px;
   margin-bottom: -10px;
   padding: 10px 5px;
   width: 100%;
 }
-.password{
+.password {
   border: 1px solid #999;
   border-radius: 3px;
   margin-bottom: -10px;
   padding: 10px 5px;
   width: 100%;
 }
-.Evangadi_description{
+.Evangadi_description {
   color: #656565;
   margin-left: 40px;
   width: 35%;

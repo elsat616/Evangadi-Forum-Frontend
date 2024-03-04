@@ -13,16 +13,22 @@ function Footer() {
           <div className={classes.footer_inner_container}>
             <div className={classes.footer_data}>
               <div>
-              <div className={classes.footer_icon}>
-                <img src={logo} />
-              </div>  
-              <div className="footer_icons">
-                <FacebookOutlinedIcon />
-                <InstagramIcon />
-                <YouTubeIcon />
-              </div>            
+                <div className={classes.footer_icon}>
+                  <img src={logo} />
+                </div>
+                <div className={classes.footer_icons}>
+                  <div>
+                    <FacebookOutlinedIcon />
+                  </div>
+                  <div>
+                    <InstagramIcon />
+                  </div>
+                  <div>
+                    <YouTubeIcon />
+                  </div>
+                </div>
               </div>
-              <div>
+              <div className={classes.links}>
                 <h3>Useful Link</h3>
                 <ul>
                   <li>How it works</li>
@@ -30,7 +36,7 @@ function Footer() {
                   <li>Privacy policy</li>
                 </ul>
               </div>
-              <div>
+              <div className={classes.links}>
                 <h3>Contact Info</h3>
                 <ul>
                   <li>Contact Info</li>
@@ -41,8 +47,6 @@ function Footer() {
             </div>
           </div>
         </div>
-
-        <div className={classes.copy_write}>&copy; 2010-2024, Evangadi.com</div>
       </div>
     </>
   );

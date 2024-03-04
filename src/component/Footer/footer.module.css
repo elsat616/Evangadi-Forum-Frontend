@@ -5,11 +5,21 @@
   font-size: 12px;
 }
 
+.footer_icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.footer_icons svg {
+  font-size: 40px;
+}
+
 .footer_out_container {
   display: flex;
   justify-content: center;
   padding: 20px;
-  height: 100px;
+  height: auto;
 }
 .footer_inner_container {
   width: 80%;
@@ -94,15 +104,42 @@
   font-size: 14px;
   padding: 20px;
 }
+.links {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 15px;
+}
 @media screen and (max-width: 768px) {
   .footer_data {
     display: flex;
+    flex-direction: column;
+  }
+  .footer_icon {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .footer_icons {
+    margin: 10px auto;
   }
   .logo_container1 {
     display: none;
   }
+
+  .links {
+    text-align: center;
+    margin: 20px 0;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    font-size: 15px;
+  }
+
+  .links h3 {
+    margin-bottom: 10px;
+  }
+
   .footer_out_container {
     padding: 20px;
-    height: 400px;
+    height: auto;
   }
 }
+

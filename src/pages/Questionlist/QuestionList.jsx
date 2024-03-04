@@ -2,35 +2,41 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "../../axiosConfig";
 import { UserContext } from "../../component/Dataprovide/DataProvider";
 import { BsPersonCircle } from "react-icons/bs";
+import { IoIosArrowForward } from "react-icons/io";
 import classes from "./questionlist.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function QuestionList() {
-  const [question, setQuestions] = useState([]);
+  const [question, setQuestions] = useState([null]);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData] = useContext(UserContext);
   const navigate = useNavigate();
+  console.log(question);
+
+  console.log(userData, "llll");
 
   function handleClick(questionid) {
     navigate(`/question/${questionid}`);
   }
+
   const fetchQuestions = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("/questions", {
+      const response = await axios.get("/questions/allQuestion", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(response);
       setQuestions(response.data);
     } catch (error) {
-      if (error.response && error.response.status === 401) {
+      console.log(error);
+      if (error?.response && error?.response?.status === 401) {
         setIsLoggedIn(false);
         setError("Unauthorized access. Please log in.");
       } else {
         setError("An error occurred. Please try again later.");
-        console.log(error);
       }
     }
   };
@@ -47,30 +53,29 @@ function QuestionList() {
 
   return (
     <div>
-      {error ? (
-        <p>{error}</p>
+      {question.length == null ? (
+        <p>No Question Posted</p>
       ) : (
-        question.map((question) => (
-          <div className={classes.question}>
-            <div key={question.id} className={classes.question_list}>
-              <div>
-                <h5>
-                  <BsPersonCircle size={75} color="#1B92BC" />
-                  <br />
-                  {question.username}{" "}
-                </h5>
+        question?.map((question) => (
+          <div
+            onClick={() => handleClick(question.id)}
+            className={classes.question}
+          >
+            <div key={question?.id} className={classes.question_list}>
+              <div className={classes.avatar}>
+                <BsPersonCircle size={60} color="#1B92BC" />
+                <h5>{question?.username}</h5>
               </div>
 
-              <div onClick={() => handleClick(question.id)}>
+              <div>
                 {/* <Link to={"/answers"}> */}
-                <h3> {question.title}</h3>
-                <p> {question.description}</p>
+                <p> {question?.title}</p>
+                {/* <p> {question?.description}</p> */}
                 {/* </Link> */}
               </div>
+              <div className={classes?.arrow}>{<IoIosArrowForward />}</div>
             </div>
-            <div className={classes.answer_wrapper}>
-              <h3>answer</h3>
-            </div>
+            <hr />
           </div>
         ))
       )}

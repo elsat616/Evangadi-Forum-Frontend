@@ -11,6 +11,7 @@ import Answer from "./pages/Answer/Answer";
 function App() {
   const [userData, setUserData] = useContext(UserContext);
 
+  
   const checkUser = async () => {
     let token = localStorage.getItem("token");
     if (token === null || token === "") {
@@ -33,7 +34,12 @@ function App() {
       });
     }
   };
-
+  
+  const checkUser2 = async()=>{
+    
+  }
+  
+  // console.log(userData.user.display_name.length ,"kkkk")
   useEffect(() => {
     checkUser();
   }, []);
@@ -45,6 +51,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/question" element={<Question />} />
         <Route path="/question/:id" element={<Answer />} />
+        <Route
+          path="*"
+          element={
+            <>
+              <h1>page not found</h1>
+            </>
+          }
+        />
       </Routes>
     </Router>
   );
