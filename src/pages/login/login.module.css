@@ -7,6 +7,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   padding-top: 40px;
+  width: 100%;
 }
 
 .login_wrapper {
@@ -22,25 +23,18 @@
   padding-bottom: 20px;
 }
 
-.create{
-  text-align: center;
-  width: 100%;
-}
 
-.c
-.create:hover {
-  padding-left: 50px;
-  border-bottom: 3px rgb(0, 0, 0) solid;
-  transition: 10000ms;
-  width: 50%;
-  
-}
+
 
 
 .box {
   box-shadow: 0px 0px 6px 0px rgb(56, 55, 55);
-padding: 20px;
-background-color: white;
+  padding: 40px;
+  background-color: white;
+  margin-left: 10%;
+  width: 40%;
+  border-radius: 5px;
+  height: 500px;
 }
 
 .login__form {
@@ -56,10 +50,12 @@ background-color: white;
   padding-bottom: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
 .login_title {
   color: #4b456f;
   margin: 30px 0px 10px;
 }
+
 .title_ev {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -74,6 +70,7 @@ background-color: white;
 .login_form a {
   color: chocolate;
 }
+
 .login_form_input {
   font-size: 14px;
   padding: 10px;
@@ -123,6 +120,7 @@ background-color: white;
 .login__form a:hover {
   color: #da7000;
 }
+
 .email {
   border: 1px solid #999;
   border-radius: 3px;
@@ -130,6 +128,7 @@ background-color: white;
   padding: 10px 5px;
   width: 100%;
 }
+
 .password {
   border: 1px solid #999;
   border-radius: 3px;
@@ -137,8 +136,22 @@ background-color: white;
   padding: 10px 5px;
   width: 100%;
 }
+
 .Evangadi_description {
   color: #656565;
-  margin-left: 40px;
-  width: 35%;
+  margin: 0 2%;
+  width: 48%;
+
+}
+
+.new {
+  display: flex;
+  justify-content: left;
+  gap: 2px;
+}
+
+.new .createAccount {
+  padding-left: "100px";
+  color: "#F04400";
+  cursor: "pointer";
 }

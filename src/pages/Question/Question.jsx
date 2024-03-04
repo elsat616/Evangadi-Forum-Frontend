@@ -12,9 +12,9 @@ function Question() {
   const titleDom = useRef();
   const descriptionDom = useRef();
 
-  useEffect(() => {
-    if (!userData.user) navigate("/");
-  }, [userData.user, navigate]);
+  // useEffect(() => {
+  //   if (!userData.data) navigate("/");
+  // }, [userData.user, navigate]);
 
   const token = localStorage.getItem("token");
 

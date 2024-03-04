@@ -18,7 +18,7 @@ function Answer() {
   const answerDom = useRef();
   const token = localStorage.getItem("token");
   // console.log(question, "pppppppp");
-  console.log(answers, "aaaaaa");
+  // console.log(answers, "aaaaaa");
 
   async function getQuestions() {
     try {
@@ -47,6 +47,7 @@ function Answer() {
   }
 
   useEffect(() => {
+
     getQuestions();
     getAnswer();
   }, []);

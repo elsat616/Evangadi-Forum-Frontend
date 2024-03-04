@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useContext, useEffect, useState, createContext } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { UserContext } from "./component/Dataprovide/DataProvider";
 import Home from "./pages/Home/Home";
 import Login from "./pages/login/login";
@@ -7,44 +7,61 @@ import axios from "./axiosConfig";
 import Question from "./pages/Question/Question";
 import Register from "./pages/Register/Register";
 import Answer from "./pages/Answer/Answer";
+import axiosBase from "./axiosConfig";
+
+export const AppState = createContext();
 
 function App() {
   const [userData, setUserData] = useContext(UserContext);
+  let token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const [user, setUser] = useState();
 
-  
-  const checkUser = async () => {
-    let token = localStorage.getItem("token");
-    if (token === null || token === "") {
-      localStorage.setItem("token", "");
-      token = "";
-    } else {
-      const userRes = await axios.get("/users/check", {
-        headers: { Authorization: "Bearer " + token },
-      });
+  // console.log(user);
+  // console.log(token);
+  // const checkUser = async () => {
+  //   if (token === null || token === "") {
+  //     localStorage.setItem("token", "");
+  //     token = "";
+  //   } else {
+  //     const userRes = await axios.get("/users/check", {
+  //       headers: { Authorization: "Bearer " + token },
+  //     });
+  //     setUserData({
+  //       token,
+  //       user: {
+  //         id: userRes.data.userid,
+  //         display_name: userRes.data.username,
+  //       },
+  //       config: {
+  //         headers: { Authorization: "Bearer " + token },
+  //       },
+  //     });
+  //   }
+  // };
 
-      setUserData({
-        token,
-        user: {
-          id: userRes.data.userid,
-          display_name: userRes.data.username,
-        },
-        config: {
-          headers: { Authorization: "Bearer " + token },
+  const checkUser2 = async () => {
+    try {
+      const { data } = await axios.get("/users/check", {
+        headers: {
+          Authorization: "Bearer " + token,
         },
       });
+      // setUserData({ data });
+      setUserData({ data });
+      // console.log(data);
+    } catch (error) {
+      // console.log(error);
+      navigate("/login");
     }
   };
-  
-  const checkUser2 = async()=>{
-    
-  }
-  
+
   // console.log(userData.user.display_name.length ,"kkkk")
   useEffect(() => {
-    checkUser();
+    checkUser2();
   }, []);
   return (
-    <Router>
+    <AppState.Provider value={{ user, setUser }}>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -60,7 +77,7 @@ function App() {
           }
         />
       </Routes>
-    </Router>
+    </AppState.Provider>
   );
 }
 

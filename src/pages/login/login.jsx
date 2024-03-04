@@ -32,13 +32,13 @@ function login() {
         email: emailValue,
         password: passValue,
       });
-      console.log(data.token, "hhhhhhh");
+      // console.log(data.token, "hhhhhhh");
       // alert("login successfull.");
       localStorage.setItem("token", data.token);
       navigate("/");
     } catch (error) {
-      alert(error);
-      // ?.response?.data?.msg
+      alert(error?.response?.data.msg);
+
       console.log(error.response.data);
     }
   }
@@ -116,29 +116,27 @@ function login() {
           paddingTop: "100px",
           paddingBottom: "100px",
         }}
-        className={classes.login_container}
-      >
+        className={classes.login_container}>
         {/* className={classes.login_wrapper} */}
         <div className={classes.box}>
           <div id="" className="carousel slide">
             <div className="carousel-inner">
               {/* login */}
 
-              <div id="login" className="carousel-item active">
+              <div id="login" className="carousel-item active ">
                 <div className="login">
                   <h3 className={classes.login_title}>Login to your account</h3>
 
-                  <div>
+                  <div className={classes.new}>
                     <div>Don't have an account?</div>
                     <div
                       className={classes.create}
                       onClick={handleSignInClick}
                       style={{
-                        paddingLeft: "10px",
+                        paddingLeft: "3px",
                         color: "#F04400",
                         cursor: "pointer",
-                      }}
-                    >
+                      }}>
                       Create a new account
                     </div>
                     <div className={classes.newLine}></div>
@@ -146,8 +144,7 @@ function login() {
 
                   <form
                     onSubmit={handleSubmit}
-                    className={classes.login_form_input}
-                  >
+                    className={classes.login_form_input}>
                     <div>
                       <input
                         className={classes.email}
@@ -180,17 +177,24 @@ function login() {
 
               {/* register */}
 
-              <div id="register" className="carousel-item ">
+              <div id="register" className="carousel-item  ">
                 <h1 className={classess.login_title}>Join the network</h1>
                 <small>
                   Already have an account?
-                  <span onClick={handleRegisterClick}>Sign in</span>
+                  <span
+                    onClick={handleRegisterClick}
+                    style={{
+                      paddingLeft: "3px",
+                      color: "#F04400",
+                      cursor: "pointer",
+                    }}
+                    >Sign in
+                  </span>
                 </small>
 
                 <form
                   onSubmit={handleSubmitR}
-                  className={classess.login_form_input}
-                >
+                  className={classess.login_form_input}>
                   <div className={classess.inputs}>
                     <div>
                       <input
