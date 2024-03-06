@@ -6,12 +6,16 @@ import { IoIosArrowForward } from "react-icons/io";
 import classes from "./questionlist.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
-function QuestionList({ searchQuery }) {
-  const [question, setQuestions] = useState([]);
+function QuestionList() {
+  const [question, setQuestions] = useState([null]);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData] = useContext(UserContext);
   const navigate = useNavigate();
+  // console.log(question);
+
+  // console.log(userData, "llll");
+
 
   function handleClick(questionid) {
     navigate(`/question/${questionid}`);
@@ -25,6 +29,7 @@ function QuestionList({ searchQuery }) {
           Authorization: `Bearer ${token}`,
         },
       });
+      // console.log(response);
       setQuestions(response.data);
     } catch (error) {
       console.log(error);
@@ -39,6 +44,7 @@ function QuestionList({ searchQuery }) {
 
   useEffect(() => {
     fetchQuestions();
+    // Simulate user login
     setIsLoggedIn(true);
   }, []);
 
@@ -46,36 +52,29 @@ function QuestionList({ searchQuery }) {
     return null; // or redirect to login page
   }
 
-  // Filter the questions based on the search query
-  const filteredQuestions = question.filter(
-    (question) =>
-      question.title &&
-      question.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
-    <div className={classes.question_list1}>
-      {filteredQuestions.length === 0 ? (
-        <p>No questions found.</p>
+    <div>
+      {question.length == null ? (
+        <p>No Question Posted</p>
       ) : (
-        filteredQuestions.map((question) => (
+        question?.map((question) => (
           <div
             onClick={() => handleClick(question.id)}
             className={classes.question}
-            key={question.id}
           >
-            <div className={classes.question_list}>
+            <div key={question?.id} className={classes.question_list}>
               <div className={classes.avatar}>
                 <BsPersonCircle size={60} color="#1B92BC" />
-                <h5>{question.username}</h5>
+                <h5>{question?.username}</h5>
               </div>
 
               <div>
-                <p>{question.title}</p>
+                {/* <Link to={"/answers"}> */}
+                <p> {question?.title}</p>
+                {/* <p> {question?.description}</p> */}
+                {/* </Link> */}
               </div>
-              <div className={classes.arrow}>
-                <IoIosArrowForward />
-              </div>
+              <div className={classes?.arrow}>{<IoIosArrowForward />}</div>
             </div>
             <hr />
           </div>

@@ -8,6 +8,7 @@ import Question from "./pages/Question/Question";
 import Register from "./pages/Register/Register";
 import Answer from "./pages/Answer/Answer";
 import axiosBase from "./axiosConfig";
+import Profile from "./component/Header/Profile";
 
 export const AppState = createContext();
 
@@ -68,6 +69,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/question" element={<Question />} />
         <Route path="/question/:id" element={<Answer />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="*"
           element={

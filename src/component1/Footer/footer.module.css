@@ -3,10 +3,6 @@
   color: white;
   font-family: "Courier New", Courier, monospace;
   font-size: 12px;
-  height: auto;
-  bottom: 0;
-  left: 0;
-  margin-top: 20px;
 }
 
 .footer_icons {
@@ -146,3 +142,4 @@
     height: auto;
   }
 }
+

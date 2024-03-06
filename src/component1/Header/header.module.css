@@ -60,10 +60,3 @@ position: sticky;
   background-color: #FF8500;
   transition: 300ms;
 }
-.link {
-  color: black;
-}
-.link a{
-  text-decoration: none;
-  color: black;
-}
