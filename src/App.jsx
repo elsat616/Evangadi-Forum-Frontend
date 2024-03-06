@@ -18,29 +18,6 @@ function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState();
 
-  // console.log(user);
-  // console.log(token);
-  // const checkUser = async () => {
-  //   if (token === null || token === "") {
-  //     localStorage.setItem("token", "");
-  //     token = "";
-  //   } else {
-  //     const userRes = await axios.get("/users/check", {
-  //       headers: { Authorization: "Bearer " + token },
-  //     });
-  //     setUserData({
-  //       token,
-  //       user: {
-  //         id: userRes.data.userid,
-  //         display_name: userRes.data.username,
-  //       },
-  //       config: {
-  //         headers: { Authorization: "Bearer " + token },
-  //       },
-  //     });
-  //   }
-  // };
-
   const checkUser2 = async () => {
     try {
       const { data } = await axios.get("/users/check", {
@@ -66,7 +43,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path ="/profile" element ={<Profile/>}/>
+        <Route path="/profile" element={<Profile />} />
         <Route path="/" element={<Home />} />
         <Route path="/question" element={<Question />} />
         <Route path="/question/:id" element={<Answer />} />

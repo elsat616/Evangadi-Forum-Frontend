@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Layout from "../../component/Layout/Layout";
 import classes from "./login.module.css";
 import classess from "./register.module.css";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function login() {
   const navigate = useNavigate();
@@ -16,6 +18,15 @@ function login() {
   const lastnameDom = useRef();
   const emailDomR = useRef();
   const passwordDomR = useRef();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [form, setForm] = useState({});
+
+  const passwordchange = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -37,10 +48,9 @@ function login() {
       // alert("login successfull.");
       localStorage.setItem("token", data.token);
       navigate("/");
-      if(data){
-        window.location.reload()
+      if (data) {
+        window.location.reload();
       }
-      
     } catch (error) {
       alert(error?.response?.data.msg);
 
@@ -121,7 +131,8 @@ function login() {
           paddingTop: "100px",
           paddingBottom: "100px",
         }}
-        className={classes.login_container}>
+        className={classes.login_container}
+      >
         {/* className={classes.login_wrapper} */}
         <div className={classes.box}>
           <div id="" className="carousel slide">
@@ -141,7 +152,8 @@ function login() {
                         paddingLeft: "3px",
                         color: "#F04400",
                         cursor: "pointer",
-                      }}>
+                      }}
+                    >
                       Create a new account
                     </div>
                     <div className={classes.newLine}></div>
@@ -149,7 +161,8 @@ function login() {
 
                   <form
                     onSubmit={handleSubmit}
-                    className={classes.login_form_input}>
+                    className={classes.login_form_input}
+                  >
                     <div>
                       <input
                         className={classes.email}
@@ -165,14 +178,29 @@ function login() {
 
                     <div>
                       <input
-                        className={classes.password}
+                        type={passwordVisible ? "text" : "password"}
+                        className="p-2 mt-1 form-control"
                         ref={passwordDom}
-                        type="password"
                         name="passWord"
                         placeholder="Enter Your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                      />
+                      />{" "}
+                      <i
+                        onClick={passwordchange}
+                        style={{
+                          position: "relative",
+                          top: "-35px",
+                          left: "85%",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {passwordVisible ? (
+                          <VisibilityIcon />
+                        ) : (
+                          <VisibilityOffIcon />
+                        )}
+                      </i>
                       <br />
                     </div>
                     <button type="submit">Login</button>
@@ -193,13 +221,15 @@ function login() {
                       color: "#F04400",
                       cursor: "pointer",
                     }}
-                    >Sign in
+                  >
+                    Sign in
                   </span>
                 </small>
 
                 <form
                   onSubmit={handleSubmitR}
-                  className={classess.login_form_input}>
+                  className={classess.login_form_input}
+                >
                   <div className={classess.inputs}>
                     <div>
                       <input
@@ -239,13 +269,38 @@ function login() {
                       />
                     </div>
                     <br />
-                    <div>
+                    {/* <div>
                       <input
                         className={classess.password}
                         ref={passwordDomR}
                         type="password"
                         placeholder="passWord"
                       />
+                    </div> */}
+                    <div>
+                      <input
+                        type={passwordVisible ? "text" : "password"}
+                        className="p-2 mt-1 form-control"
+                        ref={passwordDomR}
+                        name="passWord"
+                        placeholder="Enter Your password"
+                      />{" "}
+                      <i
+                        onClick={passwordchange}
+                        style={{
+                          position: "relative",
+                          top: "-35px",
+                          left: "85%",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {passwordVisible ? (
+                          <VisibilityIcon />
+                        ) : (
+                          <VisibilityOffIcon />
+                        )}
+                      </i>
+                      <br />
                     </div>
                     <br />
                     <small>
@@ -262,9 +317,9 @@ function login() {
 
         <div className={classes.Evangadi_description}>
           <div className="padd-text fadeInLeft">
-            <Link>
-              <small className={classes.title_link}>About</small>
-            </Link>
+            <small className={classes.title_link}>
+              <Link>About</Link>
+            </small>
             <h2 className={classes.title_ev}>Evangadi Networks</h2>
             <p className={classes}>
               No matter what stage of life you are in, whether you’re just
@@ -277,8 +332,8 @@ function login() {
               looking to meet mentors of your own, please start by joining the
               network here.
             </p>
-            <a href="/explained/" className="btn btn-blue">
-              How it works
+            <a href="#" className={classes.how}>
+              <button>How it works</button>
             </a>
           </div>
         </div>

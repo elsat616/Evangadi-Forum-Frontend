@@ -7,11 +7,11 @@ import { UserContext } from "../Dataprovide/DataProvider";
 function Header() {
   const [userData, setUserData] = useContext(UserContext);
   // console.log(userData);
-  
+
   async function logout() {
     //set global state to undefined will logout the user
-    localStorage.removeItem("token")
-    setUserData(null)
+    localStorage.removeItem("token");
+    setUserData(null);
   }
 
   return (
@@ -25,7 +25,9 @@ function Header() {
           </div>
           <div className={classes.navlist}>
             <div className={classes.link}>
-              <Link to="/"><div>Home</div></Link>
+              <Link to="/">
+                <div>Home</div>
+              </Link>
               <div>How it Works</div>
               {userData?.data && ( // Render the "Profile" link only if the user is logged in
                 <Link to="/profile">
@@ -40,7 +42,8 @@ function Header() {
                   className={classes.btn_blue}
                   data-panel=".panel-login"
                   to="/login"
-                  onClick={logout}>
+                  onClick={logout}
+                >
                   {userData?.data ? `Log Out` : `Sign In`}
                 </Link>
               </button>
@@ -52,4 +55,3 @@ function Header() {
   );
 }
 export default Header;
-

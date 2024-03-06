@@ -6,7 +6,6 @@
   height: auto;
   bottom: 0;
   left: 0;
-  flex-shrink: 0;
   margin-top: 20px;
 }
 
@@ -147,4 +146,3 @@
     height: auto;
   }
 }
-
