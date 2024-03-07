@@ -1,13 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import classes from "./header.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/logo0.png";
 import { UserContext } from "../Dataprovide/DataProvider";
 
 function Header() {
   const [userData, setUserData] = useContext(UserContext);
+  const navigate = useNavigate();
+  const headerStyle = {
+    position: "sticky",
+    top: 0,
+    zIndex: 10,
+    boxShadow: "0px 3px 3px 0px rgba(0, 0, 0, 0.1)", // Set your desired z-index value
+  };
   // console.log(userData);
-
+  // useEffect(() => {
+  //   if (!userData.data) {
+  //     navigate("/login");
+  //   } else {
+  //     navigate("/home");
+  //   }
+  // }, [userData.user, navigate]);
   async function logout() {
     //set global state to undefined will logout the user
     localStorage.removeItem("token");
@@ -15,7 +28,12 @@ function Header() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav
+      className="navbar navbar-expand-lg bg-body-tertiary header py-4"
+      style={headerStyle}
+      bg="light"
+      expand="lg"
+    >
       <div className="container-fluid">
         <div className={classes.logo_container}>
           <Link to="/home" className="navbar-brand" href="#">
