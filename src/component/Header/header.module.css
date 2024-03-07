@@ -3,24 +3,21 @@
   justify-content: space-between;
 
   align-items: center;
-
-
 }
 
 .header {
   box-shadow: 0px 0px 5px 1px rgb(19, 16, 16);
   z-index: 100;
-background-color: white;
+  background-color: white;
   padding: 25px 100px;
   width: 100%;
   opacity: 0.95;
 }
 
-section{
+section {
   z-index: 100;
-position: sticky;
+  position: sticky;
   top: 0;
-  
 }
 
 .header_container img {
@@ -43,12 +40,11 @@ position: sticky;
   gap: 10px;
 }
 
-
 .navlist button {
   padding: 5px 20px;
   border-radius: 4px;
   border: none;
-  background-color: #516CF0;
+  background-color: #516cf0;
 }
 
 .btn_blue {
@@ -57,13 +53,30 @@ position: sticky;
 }
 
 .navlist button:hover {
-  background-color: #FF8500;
+  background-color: #ff8500;
   transition: 300ms;
 }
 .link {
   color: black;
 }
-.link a{
+.link a {
   text-decoration: none;
   color: black;
 }
+.container-fluid {
+  margin-right: 80px;
+}
+.logo_container {
+  margin-right: 800px;
+}
+.connect_block button{
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .logo_container {
+    margin-right: 0;
+  }
+
+}
+

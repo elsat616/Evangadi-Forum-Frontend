@@ -76,36 +76,47 @@ function Dashboard() {
 }
 
 function ProfileForm({ onSubmit }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [fname, setfName] = useState("");
+  const [lname, setlName] = useState("");
+  const [bio, setBio] = useState("");
   const [phone, setPhone] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, email, phone });
-    setName("");
-    setEmail("");
+    onSubmit({ fname, lname, bio, phone });
+    setfName("");
+    setlName("");
+    setBio("");
     setPhone("");
   };
 
   return (
     <form className="profile-form" onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="fname">First Name:</label>
         <input
           type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          id="fname"
+          value={fname}
+          onChange={(e) => setfName(e.target.value)}
         />
       </div>
       <div className="form-group">
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="lname">Last Name:</label>
         <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          id="lname"
+          value={lname}
+          onChange={(e) => setlName(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="bio">Bio:</label>
+        <input
+          type="text"
+          id="bio"
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
         />
       </div>
       <div className="form-group">

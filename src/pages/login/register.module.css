@@ -105,33 +105,15 @@
   padding: 10px 5px;
   width: 100%;
 }
-/* 
+
 .first_last {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 4px;
 }
 
 .first {
-  border: 1px solid #999;
-  border-radius: 3px;
-  padding-left: 20px;
-
-}
-
-.last {
-  border: 1px solid #999; 
-  border-radius: 3px;
-  padding-right: 20px;
-} */
-.first_last {
-  display: flex;
-  gap: 10px;
-}
-
-.first {
-  border: 1px solid #999;
   border-radius: 3px;
   margin-bottom: -10px;
   padding: 10px 5px;
@@ -139,7 +121,6 @@
 }
 
 .last {
-  border: 1px solid #999;
   border-radius: 3px;
   margin-bottom: -10px;
   padding: 10px 5px;
@@ -157,8 +138,7 @@
 .password {
   border: 1px solid #999;
   border-radius: 3px;
-  margin-bottom: -10px;
-  padding: 10px 5px;
+  padding: 2px;
   width: 100%;
 }
 
@@ -180,4 +160,13 @@
 .login_wrapper small a {
   color: #da7000;
   text-decoration: none;
+}
+
+.agree2 {
+  text-align: center;
+  margin-top: -30px;
+}
+.agree2 a {
+  text-decoration: none;
+  color: #da7000;
 }

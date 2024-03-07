@@ -9,6 +9,7 @@ import Register from "./pages/Register/Register";
 import Answer from "./pages/Answer/Answer";
 import axiosBase from "./axiosConfig";
 import Profile from "./component/Header/Profile";
+import NotFound from "./pages/login/Notfound";
 
 export const AppState = createContext();
 
@@ -44,17 +45,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/question" element={<Question />} />
         <Route path="/question/:id" element={<Answer />} />
-        <Route
-          path="*"
-          element={
-            <>
-              <h1>page not found</h1>
-            </>
-          }
-        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AppState.Provider>
   );
