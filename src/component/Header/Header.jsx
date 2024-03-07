@@ -1,13 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import classes from "./header.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/logo0.png";
 import { UserContext } from "../Dataprovide/DataProvider";
 
 function Header() {
   const [userData, setUserData] = useContext(UserContext);
+  const navigate = useNavigate();
+  const headerStyle = {
+    position: "sticky",
+    top: 0,
+    zIndex: 10,
+    boxShadow: "0px 3px 3px 0px rgba(0, 0, 0, 0.1)", // Set your desired z-index value
+  };
   // console.log(userData);
-
+  // useEffect(() => {
+  //   if (!userData.data) {
+  //     navigate("/login");
+  //   } else {
+  //     navigate("/home");
+  //   }
+  // }, [userData.user, navigate]);
   async function logout() {
     //set global state to undefined will logout the user
     localStorage.removeItem("token");
@@ -15,27 +28,46 @@ function Header() {
   }
 
   return (
-    <section>
-      <div className={classes.header}>
-        <div className={classes.header_container}>
-          <div className={classes.logo_container}>
-            <Link to="/">
-              <img src={logo} alt="Logo" />
-            </Link>
-          </div>
-          <div className={classes.navlist}>
-            <div className={classes.link}>
-              <Link to="/">
-                <div>Home</div>
+    <nav
+      className="navbar navbar-expand-lg bg-body-tertiary header py-4"
+      style={headerStyle}
+      bg="light"
+      expand="lg"
+    >
+      <div className="container-fluid">
+        <div className={classes.logo_container}>
+          <Link to="/home" className="navbar-brand" href="#">
+            <img src={logo} alt="Logo" />
+          </Link>
+        </div>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link
+                to="/home"
+                className="nav-link active"
+                aria-current="page"
+                href="#"
+              >
+                Home
               </Link>
-              <div>How it Works</div>
-              {userData?.data && ( // Render the "Profile" link only if the user is logged in
-                <Link to="/profile">
-                  <div>Profile</div>
-                </Link>
-              )}
-            </div>
-
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                How it Works
+              </a>
+            </li>
             <div className={classes.connect_block}>
               <button>
                 <Link
@@ -48,10 +80,10 @@ function Header() {
                 </Link>
               </button>
             </div>
-          </div>
+          </ul>
         </div>
       </div>
-    </section>
+    </nav>
   );
 }
 export default Header;

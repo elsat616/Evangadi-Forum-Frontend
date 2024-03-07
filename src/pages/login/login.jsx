@@ -39,15 +39,13 @@ function login() {
     }
 
     try {
-      const { data } = await axios.post("/users/login", {
+      const { data } = await axios.post("/users", {
         email: emailValue,
         password: passValue,
       });
 
-      // console.log(data.token, "hhhhhhh");
-      // alert("login successfull.");
       localStorage.setItem("token", data.token);
-      navigate("/");
+      navigate("/home");
       if (data) {
         window.location.reload();
       }
@@ -85,8 +83,7 @@ function login() {
         email: emailValue,
         password: passValue,
       });
-      // alert("register successfull. please login");
-      // navigate("/login");
+
       setTimeout(() => {
         handleRegisterClick();
       });
@@ -99,28 +96,14 @@ function login() {
   const loginRef = useRef();
 
   const handleSignInClick = () => {
-    // event.preventDefault();
-    // if (loginRef.current) {
-    //   loginRef.current.scrollIntoView({ behavior: "smooth" });
-    // }
     document.getElementById("login").className = "carousel-item";
     document.getElementById("register").className = "carousel-item active";
   };
 
   const handleRegisterClick = () => {
-    // event.preventDefault();
-    // if (loginRef.current) {
-    //   loginRef.current.scrollIntoView({ behavior: "smooth" });
-    // }
     document.getElementById("login").className = "carousel-item active";
     document.getElementById("register").className = "carousel-item ";
   };
-
-  // console.log(document.getElementById("register"));
-
-  // console.log(
-  //   (loginRef.current.createContext= "<div className='carousel-item' ></div>")
-  // );
 
   return (
     <Layout>
@@ -179,7 +162,8 @@ function login() {
                     <div>
                       <input
                         type={passwordVisible ? "text" : "password"}
-                        className="p-2 mt-1 form-control"
+                        // className="p-2 mt-1 form-control"
+                        className={classess.password}
                         ref={passwordDom}
                         name="passWord"
                         placeholder="Enter Your password"
@@ -236,23 +220,21 @@ function login() {
                         className={classess.user}
                         ref={usernameDom}
                         type="text"
-                        placeholder="userName"
+                        placeholder="Enter Your username"
                       />
                     </div>
                     <br />
                     <div className={classess.first_last}>
-                      <div>
+                      <div className={classess.first}>
                         <input
-                          className={classess.first}
                           ref={firstnameDom}
                           type="text"
                           placeholder="First Name"
                         />
                       </div>
 
-                      <div>
+                      <div className={classess.last}>
                         <input
-                          className={classess.last}
                           ref={lastnameDom}
                           type="text"
                           placeholder="Last Name"
@@ -265,22 +247,14 @@ function login() {
                         className={classess.email}
                         ref={emailDomR}
                         type="email"
-                        placeholder="email"
+                        placeholder="Email"
                       />
                     </div>
                     <br />
-                    {/* <div>
-                      <input
-                        className={classess.password}
-                        ref={passwordDomR}
-                        type="password"
-                        placeholder="passWord"
-                      />
-                    </div> */}
                     <div>
                       <input
                         type={passwordVisible ? "text" : "password"}
-                        className="p-2 mt-1 form-control"
+                        className={classess.password}
                         ref={passwordDomR}
                         name="passWord"
                         placeholder="Enter Your password"
@@ -303,10 +277,12 @@ function login() {
                       <br />
                     </div>
                     <br />
-                    <small>
-                      I agree to the <Link> privacy policy</Link>
-                      <span>and</span> <Link>terms of service.</Link>
-                    </small>
+                    <div className={classess.agree2}>
+                      <small>
+                        I agree to the <Link> privacy policy</Link>
+                        <span>and</span> <Link>terms of service.</Link>
+                      </small>
+                    </div>
                     <button type="submit">Agree and Join</button>
                   </div>
                 </form>
