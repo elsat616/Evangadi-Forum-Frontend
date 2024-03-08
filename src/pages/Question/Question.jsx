@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { UserContext } from "../../component/Dataprovide/DataProvider";
 import axios from "../../axiosConfig";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +11,7 @@ function Question() {
   const [userData, setUserData] = useContext(UserContext);
   const titleDom = useRef();
   const descriptionDom = useRef();
-
-  // useEffect(() => {
-  //   if (!userData.data) navigate("/");
-  // }, [userData.user, navigate]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const token = localStorage.getItem("token");
 
@@ -24,7 +21,10 @@ function Question() {
     const descriptionValue = descriptionDom.current.value;
 
     if (!titleValue || !descriptionValue) {
-      alert("Please provide all required information");
+      setErrorMessage("Please provide all required information");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
       return;
     }
     try {
@@ -41,10 +41,13 @@ function Question() {
           },
         }
       );
-      // alert("Thank you for your question");
-      navigate("/");
+
+      navigate("/home");
     } catch (error) {
-      alert("something went wrong!");
+      setErrorMessage("something went wrong!");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
       console.log(error);
     }
   }
@@ -89,6 +92,9 @@ function Question() {
           </div>
 
           <h4 className={classes.post_your}>Post Your Question</h4>
+          {errorMessage && (
+            <p className={classes.errordisMsg}>{errorMessage}</p>
+          )}
           <div className={classes.question_headtitle2}>
             <form onSubmit={handleSubmit}>
               <input
@@ -102,7 +108,8 @@ function Question() {
                 className={classes.question_description}
                 ref={descriptionDom}
                 type="text"
-                placeholder="Question Description..."
+                placeholder="Question Description..."           
+                style={{ border: descriptionDom ? "" : "1px solid red" }}
               />
               <span>
                 <button

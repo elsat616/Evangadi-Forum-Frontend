@@ -7,6 +7,8 @@ import classes from "../../pages/Question/question.module.css";
 import axiosBase from "../../axiosConfig";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { BsPersonCircle } from "react-icons/bs";
+import { AiFillLike } from "react-icons/ai";
+import { AiFillDislike } from "react-icons/ai";
 
 function Answer() {
   const { id } = useParams();
@@ -15,10 +17,44 @@ function Answer() {
   const [userData, setUserData] = useContext(UserContext);
   const [question, setQuestion] = useState({});
   const [answers, setAnswer] = useState([]);
-  const answerDom = useRef();
+  const answerDom = useRef(null);
   const token = localStorage.getItem("token");
-  // console.log(question, "pppppppp");
-  // console.log(answers, "aaaaaa");
+  const [like, setlike] = useState(5);
+  const [dislike, setdislike] = useState(4);
+
+  const [likeactive, setlikeactive] = useState(false);
+  const [dislikeactive, setdislikeactive] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function likef() {
+    if (likeactive) {
+      setlikeactive(false);
+      setlike(like - 1);
+    } else {
+      setlikeactive(true);
+      setlike(like + 1);
+      if (dislikeactive) {
+        setdislikeactive(false);
+        setlike(like + 1);
+        setdislike(dislike - 1);
+      }
+    }
+  }
+
+  function dislikef() {
+    if (dislikeactive) {
+      setdislikeactive(false);
+      setdislike(like - 1);
+    } else {
+      setdislikeactive(true);
+      setdislike(like + 1);
+      if (likeactive) {
+        setlikeactive(false);
+        setdislike(like + 1);
+        setlike(dislike - 1);
+      }
+    }
+  }
 
   async function getQuestions() {
     try {
@@ -47,21 +83,21 @@ function Answer() {
   }
 
   useEffect(() => {
-
     getQuestions();
     getAnswer();
   }, []);
 
-  // useEffect(() => {
-  //   if (!userData.user) navigate("/login");
-  // }, [userData.user, navigate]);
-
   async function handleSubmit(e) {
     e.preventDefault();
     const answerValue = answerDom.current.value;
-
+    if (answerDom.current) {
+      answerDom.current.value = "";
+    }
     if (!answerValue) {
-      alert("Please provide information");
+      setErrorMessage("Please set the answer");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
       return;
     }
     try {
@@ -84,7 +120,10 @@ function Answer() {
 
       // navigate(`/question/${id}`);
     } catch (error) {
-      alert("something went wrong!");
+      setErrorMessage("your answer not post b/c is more that 100 letter");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 5000);
       console.log(error);
     }
   }
@@ -124,6 +163,16 @@ function Answer() {
                       </div>
                       <div>{aList?.answer}</div>
                     </div>
+                    <div>
+                      <span onClick={likef}>
+                        <AiFillLike />
+                        {like}
+                      </span>
+                      <span onClick={dislikef}>
+                        <AiFillDislike />
+                        {dislike}
+                      </span>
+                    </div>
                   </div>
                 );
               })}
@@ -131,6 +180,10 @@ function Answer() {
 
           <h6 className={classes.answer_question}>Answer The Top Question</h6>
           <div className={classes.question_headtitle2}>
+            {errorMessage && (
+              <p className={classes.errordisMsg}>{errorMessage}</p>
+            )}
+
             <form onSubmit={handleSubmit}>
               <div>
                 <textarea

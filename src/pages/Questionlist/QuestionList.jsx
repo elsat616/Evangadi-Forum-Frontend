@@ -47,6 +47,12 @@ function QuestionList({ searchQuery }) {
   }
 
   // Filter the questions based on the search query
+
+  if (!Array.isArray(question)) {
+   
+    return  <center><h2>No questions found.</h2>; </center>
+  }
+  
   const filteredQuestions = question.filter(
     (question) =>
       question.title &&

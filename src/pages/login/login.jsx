@@ -20,6 +20,7 @@ function login() {
   const passwordDomR = useRef();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [form, setForm] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
 
   const passwordchange = () => {
     setPasswordVisible(!passwordVisible);
@@ -34,7 +35,10 @@ function login() {
     const passValue = passwordDom.current.value;
 
     if (!emailValue || !passValue) {
-      alert("Please provide all required information");
+      setErrorMessage("Please provide all required information");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 1000);
       return;
     }
 
@@ -50,7 +54,11 @@ function login() {
         window.location.reload();
       }
     } catch (error) {
-      alert(error?.response?.data.msg);
+      // alert(error?.response?.data.msg);
+      setErrorMessage("Incorrect email or password");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 1000);
 
       console.log(error.response.data);
     }
@@ -71,7 +79,10 @@ function login() {
       !emailValue ||
       !passValue
     ) {
-      alert("Please provide all required information");
+      setErrorMessage("Please provide all required information");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 1000);
       return;
     }
 
@@ -88,7 +99,10 @@ function login() {
         handleRegisterClick();
       });
     } catch (error) {
-      alert("something went wrong!");
+      setErrorMessage("Incorrect email or password");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 1000);
       console.log(error.response);
     }
   }
@@ -139,9 +153,12 @@ function login() {
                     >
                       Create a new account
                     </div>
+
                     <div className={classes.newLine}></div>
                   </div>
-
+                  {errorMessage && (
+                    <p className={classes.errordisMsg}>{errorMessage}</p>
+                  )}
                   <form
                     onSubmit={handleSubmit}
                     className={classes.login_form_input}
@@ -196,20 +213,24 @@ function login() {
 
               <div id="register" className="carousel-item  ">
                 <h1 className={classess.login_title}>Join the network</h1>
-                <small>
-                  Already have an account?
-                  <span
-                    onClick={handleRegisterClick}
-                    style={{
-                      paddingLeft: "3px",
-                      color: "#F04400",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Sign in
-                  </span>
-                </small>
-
+                <center>
+                  <small>
+                    Already have an account?
+                    <span
+                      onClick={handleRegisterClick}
+                      style={{
+                        paddingLeft: "3px",
+                        color: "#F04400",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Sign in
+                    </span>
+                  </small>
+                </center>
+                {errorMessage && (
+                  <p className={classes.errordisMsg}>{errorMessage}</p>
+                )}
                 <form
                   onSubmit={handleSubmitR}
                   className={classess.login_form_input}
@@ -319,3 +340,109 @@ function login() {
 }
 
 export default login;
+// import React, { useState } from "react";
+// import { makeStyles } from "@material-ui/core/styles";
+
+// const useStyles = makeStyles({
+//   carouselItem: {
+//     display: "none",
+//     width: "100%",
+//     textAlign: "center",
+//     padding: "10px",
+//   },
+//   activeItem: {
+//     display: "block",
+//   },
+//   create: {
+//     // your styles for the "Create a new account" link
+//   },
+//   // ...
+// });
+
+// function LoginForm() {
+//   const classes = useStyles();
+//   const [activeItem, setActiveItem] = useState("login");
+
+//   async function handleSubmit(e) {
+//     e.preventDefault();
+
+//     // Handle login form submission
+
+//     try {
+//       // Perform login logic
+
+//       setActiveItem("home");
+//     } catch (error) {
+//       // Handle login error
+//     }
+//   }
+
+//   async function handleSubmitR(e) {
+//     e.preventDefault();
+
+//     // Handle register form submission
+
+//     try {
+//       // Perform registration logic
+
+//       setActiveItem("login");
+//     } catch (error) {
+//       // Handle registration error
+//     }
+//   }
+
+//   return (
+//     <div id="loginRegisterCarousel" className="carousel slide">
+//       <div className="carousel-inner">
+//         <div
+//           id="login"
+//           className={`${classes.carouselItem} ${
+//             activeItem === "login" ? classes.activeItem : ""
+//           }`}
+//         >
+//           {/* Login Form */}
+//           <form onSubmit={handleSubmit}>
+//             {/* ... */}
+//             <button type="submit">Sign In</button>
+//             <div
+//               className={classes.create}
+//               onClick={() => setActiveItem("register")}
+//               style={{
+//                 paddingLeft: "3px",
+//                 color: "#F04400",
+//                 cursor: "pointer",
+//               }}
+//             >
+//               Create a new account
+//             </div>
+//           </form>
+//         </div>
+
+//         <div
+//           id="register"
+//           className={`${classes.carouselItem} ${
+//             activeItem === "register" ? classes.activeItem : ""
+//           }`}
+//         >
+//           {/* Register Form */}
+//           <form onSubmit={handleSubmitR}>
+//             {/* ... */}
+//             <button type="submit">Register</button>
+//             <span
+//               onClick={() => setActiveItem("login")}
+//               style={{
+//                 paddingLeft: "3px",
+//                 color: "#F04400",
+//                 cursor: "pointer",
+//               }}
+//             >
+//               Sign in
+//             </span>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default LoginForm;
